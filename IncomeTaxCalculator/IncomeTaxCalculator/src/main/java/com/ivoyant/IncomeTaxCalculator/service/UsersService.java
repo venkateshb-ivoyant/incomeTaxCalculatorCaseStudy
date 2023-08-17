@@ -14,7 +14,9 @@ public class UsersService {
     private UserRepository userRepository;
 
     public Users save(Users users){
-        if(users.getPan() != null && users.getSecretKey()!= 0){
+        String pan = users.getPan();
+        int secretKey= users.getSecretKey();
+        if(pan != null && !pan.isEmpty() && pan.length() == 10 && secretKey != 0){
             return userRepository.save(users);
         }else {
             System.out.println("USER PAN is Empty or secret key is 0");
@@ -28,6 +30,5 @@ public class UsersService {
     public Optional<Users>getUserByID(Long userId){
         return  userRepository.findById(userId);
     }
-
 
 }
