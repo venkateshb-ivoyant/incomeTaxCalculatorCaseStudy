@@ -17,7 +17,7 @@ import lombok.Setter;
 public class UserDeductions {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  Long userDeductionId;
+    private Long userDeductionId;
 
     private String pan;
     private double standardDeduction;

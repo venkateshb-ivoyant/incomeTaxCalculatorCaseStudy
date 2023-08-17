@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/getTaxPayableAmount/" )
+@RequestMapping("api/getTaxPayableAmount/")
 public class CalculateTaxPayable {
     @Autowired
     private UserRepository userRepository;
@@ -44,12 +44,12 @@ public class CalculateTaxPayable {
         UserIncome userIncomes = userIncomeRepository.findByPan(pan);
         UserDeductions userDeductions = userDeductionsRepository.findByPan(pan);
 
-        double totalIncome = userIncomes.getOtherIncome()+userIncomes.getSalary();
-        double totalDeductions = userDeductions.getStandardDeduction()+userDeductions.getOtherDeductions()+userDeductions.getFixedDeposit()+userDeductions.getHomeLoan()+userDeductions.getHRA()+userDeductions.getInsurranceAmt();
+        double totalIncome = userIncomes.getOtherIncome() + userIncomes.getSalary();
+        double totalDeductions = userDeductions.getStandardDeduction() + userDeductions.getOtherDeductions() + userDeductions.getFixedDeposit() + userDeductions.getHomeLoan() + userDeductions.getHRA() + userDeductions.getInsurranceAmt();
 
-        double totalAmountToBeTaxCalCulated =totalIncome-totalDeductions;
-        double totaltaxToBePayable= calculateTaxService.calculateIncomeTax(totalAmountToBeTaxCalCulated);
-        String respone= "Tax Calculated on Amount"+totalAmountToBeTaxCalCulated+"And Tax to be payable is "+totaltaxToBePayable;
+        double totalAmountToBeTaxCalCulated = totalIncome - totalDeductions;
+        double totaltaxToBePayable = calculateTaxService.calculateIncomeTax(totalAmountToBeTaxCalCulated);
+        String respone = "Tax Calculated on Amount" + totalAmountToBeTaxCalCulated + "And Tax to be payable is " + totaltaxToBePayable;
         return ResponseEntity.ok(respone);
     }
 
